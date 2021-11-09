@@ -40,8 +40,8 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
     }
 
     const handleBookSubmit = e => {
-    
-      //collect data
+
+        //collect data
         const appointment = {
 
             ...bookingInfo,
@@ -50,7 +50,7 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date, setBooki
             date: date.toLocaleDateString()
         }
         // send to the server
-        fetch("http://localhost:5000/appointments", {
+        fetch("https://serene-river-83100.herokuapp.com/appointments", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

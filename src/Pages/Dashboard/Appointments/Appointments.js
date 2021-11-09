@@ -9,17 +9,21 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const Appointments = ({ date }) => {
-    const { user } = useAuth()
+    const { user, token } = useAuth()
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
 
-        const url = `http://localhost:5000/appointments?email=${user.email}&date=${date}`
-        fetch(url)
+        const url = `https://serene-river-83100.herokuapp.com/appointments?email=${user.email}&date=${date}`
+        fetch(url, {
+            headers: {
+                'authorization': `Bearer ${token}`
+            }
+        })
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
             })
-    }, [date])
+    }, [date, user.email, token])
     return (
         <div>
             <h2>appointments: {appointments.length}</h2>
